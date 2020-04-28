@@ -31,14 +31,14 @@ inquirer
         },
         {
             type: "input",
-            name: "GitHubUser",
+            name: "github",
             message: "Enter  GitHub Username"
         },
     ]
 
     )
-    .then(function ({ GitHubUser }) {
-        const queryUrl = `https://api.github.com/users/${GitHubUser}?client_id=b77dd6d5ba39bf8bca34&client_secret=8a78678b6f246d35c590f5f6088859266fc6b0d2`;
+    .then(function ({ github }) {
+        const queryUrl = `https://api.github.com/users/${github}?client_id=b77dd6d5ba39bf8bca34&client_secret=8a78678b6f246d35c590f5f6088859266fc6b0d2`;
         axios.get(queryUrl).then(function (res) {
             console.log(res.data);
             console.log(res.data.email);
