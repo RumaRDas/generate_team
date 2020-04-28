@@ -26,7 +26,7 @@ inquirer
         },
         {
             type: "input",
-            name: "Id",
+            name: "id",
             message: "Enter Tem Member ID"
         },
         {
