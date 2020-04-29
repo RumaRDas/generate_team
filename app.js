@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
@@ -44,18 +45,18 @@ inquirer
     ]
 
     )
-    .then(function(data) {
+    .then(function (data) {
         function getGitHub(github) {
             const queryUrl = `https://api.github.com/users/${github}?client_id=b77dd6d5ba39bf8bca34&client_secret=8a78678b6f246d35c590f5f6088859266fc6b0d2`;
-          
+
             return axios.get(queryUrl);
-          }
-        getGitHub(data.github).then(function(res) {
+        }
+        getGitHub(data.github).then(function (res) {
             const completeData = {
                 ...data,
                 email: res.data.email,
-              }
-              console.log(completeData);
+            }
+            console.log(completeData);
         });
     });
 
