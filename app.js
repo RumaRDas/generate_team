@@ -61,7 +61,10 @@ inquirer
     });
 
 // and to create objects for each team member (using the correct classes as blueprints!)
-
+const employee = new Employee(`${this.name}, ${this.id},  ${this.email},"Employee",  ${this.github}`);
+const engineer = new Engineer(`${this.name}, ${this.id},  ${this.email}, "Engineer", ${this.github}`);
+const manager = new Manager(`${this.name}, ${this.id},  ${this.email}, "Manager", ${this.officeNumber}`);
+const intern = new Intern(`${this.name}, ${this.id},  ${this.email}, "Intern", ${this.school}`);
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
