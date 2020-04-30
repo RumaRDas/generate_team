@@ -12,59 +12,105 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-// Write code to use inquirer to gather information about the development team members,
-inquirer
-    .prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "Enter name of team member"
-        },
-        {
-            type: "list",
-            name: "role",
-            message: "Enter role of team member",
-            choices: [
-                "Employee",
-                "Manager",
-                "Engineer",
-                "Inter"
-            ]
+const employees = [];
 
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "Enter Tem Member ID"
-        },
-        {
-            type: "input",
-            name: "github",
-            message: "Enter  GitHub Username"
-        },
+const generalQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "Enter name of team member"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "Enter Tem Member ID"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter Email"
+    },
+]
+
+const employeeTypeQuestion = {
+    type: "list",
+    name: "role",
+    message: "Enter role of team member",
+    choices: [
+        "Engineer",
+        "Intern",
+        "Exit"
     ]
+}
 
-    )
-    .then(function (data) {
-        function getGitHub(github) {
-            const queryUrl = `https://api.github.com/users/${github}?client_id=b77dd6d5ba39bf8bca34&client_secret=8a78678b6f246d35c590f5f6088859266fc6b0d2`;
+const managerQuestion = {
+    type: "input",
+    name: "officeNumber",
+    message: "Enter office number"
+}
 
-            return axios.get(queryUrl);
-        }
-        getGitHub(data.github).then(function (res) {
-            const completeData = {
-                ...data,
-                email: res.data.email,
-            }
-            console.log(completeData);
+const engineerQuestion = {
+    type: "input",
+    name: "github",
+    message: "Enter github username"
+}
+
+const internQuestion = {
+    type: "input",
+    name: "school",
+    message: "Enter school name"
+}
+
+function menu() {
+    // Write code to use inquirer to gather information about the development team members,
+    inquirer
+        .prompt([...generalQuestions, managerQuestion])
+        .then(function (data) {
+            const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+            employees.push(manager);
+            createTeamMember();
         });
-    });
+}
+function createTeamMember() {
+    inquirer
+        .prompt(employeeTypeQuestion)
+        .then(function (data) {
+            switch (data.role) {
+                case "Engineer":
+                    createEngineer();
+                    break;
+                case "Intern":
+                    createIntern();
+                    break;
+                default:
+                    // createHtml();
+                    console.log(employees);
+            }
+        })
+}
 
-// and to create objects for each team member (using the correct classes as blueprints!)
-const employee = new Employee(`${this.name}, ${this.id},  ${this.email},"Employee",  ${this.github}`);
-const engineer = new Engineer(`${this.name}, ${this.id},  ${this.email}, "Engineer", ${this.github}`);
-const manager = new Manager(`${this.name}, ${this.id},  ${this.email}, "Manager", ${this.officeNumber}`);
-const intern = new Intern(`${this.name}, ${this.id},  ${this.email}, "Intern", ${this.school}`);
+function createEngineer() {
+    inquirer
+        .prompt([...generalQuestions, engineerQuestion])
+        .then(function (data) {
+            const engineer = new Engineer(data.name, data.id, data.email, data.github)
+            employees.push(engineer);
+            createTeamMember();
+        })
+}
+
+function createIntern() {
+    inquirer
+        .prompt([...generalQuestions, internQuestion])
+        .then(function (data) {
+            const intern = new Intern(data.name, data.id, data.email, data.school)
+            employees.push(intern);
+            createTeamMember();
+        })
+}
+
+
+menu();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
