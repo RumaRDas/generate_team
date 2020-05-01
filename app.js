@@ -43,7 +43,9 @@ const employeeTypeQuestion = {
     ]
 }
 
-const managerQuestion = {
+const managerQuestion = 
+
+{
     type: "input",
     name: "officeNumber",
     message: "Enter office number"
@@ -66,7 +68,7 @@ function menu() {
     inquirer
         .prompt([...generalQuestions, managerQuestion])
         .then(function (data) {
-            const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+            const manager = new Manager(data.name, data.id, data.email, data.officeNumber,"Manager");
             employees.push(manager);
             createTeamMember();
         });
@@ -83,7 +85,7 @@ function createTeamMember() {
                     createIntern();
                     break;
                 default:
-                    // createHtml();
+                    creatHtmlPage();
                     console.log(employees);
             }
         })
@@ -93,7 +95,7 @@ function createEngineer() {
     inquirer
         .prompt([...generalQuestions, engineerQuestion])
         .then(function (data) {
-            const engineer = new Engineer(data.name, data.id, data.email, data.github)
+            const engineer = new Engineer(data.name, data.id, data.email, data.github, data.role)
             employees.push(engineer);
             createTeamMember();
         })
@@ -103,13 +105,27 @@ function createIntern() {
     inquirer
         .prompt([...generalQuestions, internQuestion])
         .then(function (data) {
-            const intern = new Intern(data.name, data.id, data.email, data.school)
+            const intern = new Intern(data.name, data.id, data.email, data.school, data.role)
             employees.push(intern);
             createTeamMember();
         })
 }
 
+function creatHtmlPage(){
+    const template = fs.readFileSync("./templates/main.html")
+    fs.writeFileSync("./teamMember.html", template, function(err){
+        if (err) throw err;
+    })
 
+    console.log("Base page generated!");
+
+
+    }
+
+
+
+
+render(employees);
 menu();
 
 // After the user has input all employees desired, call the `render` function (required
