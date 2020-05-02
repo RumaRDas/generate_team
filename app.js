@@ -11,9 +11,8 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
-const employees = [];
-
+const employees = [
+];
 const generalQuestions = [
     {
         type: "input",
@@ -43,7 +42,7 @@ const employeeTypeQuestion = {
     ]
 }
 
-const managerQuestion = 
+const managerQuestion =
 
 {
     type: "input",
@@ -68,7 +67,7 @@ function menu() {
     inquirer
         .prompt([...generalQuestions, managerQuestion])
         .then(function (data) {
-            const manager = new Manager(data.name, data.id, data.email, data.officeNumber,"Manager");
+            const manager = new Manager(data.name, data.id, data.email, data.officeNumber, "Manager");
             employees.push(manager);
             createTeamMember();
         });
@@ -111,22 +110,16 @@ function createIntern() {
         })
 }
 
-function creatHtmlPage(){
-    const template = fs.readFileSync("./templates/main.html")
-    fs.writeFileSync("./teamMember.html", template, function(err){
+function creatHtmlPage() {
+    html = render(employees);
+
+    fs.writeFileSync("./team.html", html, function (err) {
         if (err) throw err;
-    })
 
-    console.log("Base page generated!");
-
-
-    }
-
-
-
-
-render(employees);
-menu();
+        console.log("Base page generated!");
+    });
+};
+    menu();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
