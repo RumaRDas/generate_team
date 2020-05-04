@@ -113,7 +113,7 @@ function createIntern() {
 function creatHtmlPage() {
     html = render(employees);
 
-    fs.writeFileSync("./team.html", html, function (err) {
+    fs.writeFileSync("./index.html", html, function (err) {
         if (err) throw err;
 
         console.log("Base page generated!");
