@@ -2,7 +2,7 @@
 ___
 ## description
 
-Generate Team is a dynamically  generates ` Team build `  application. `Node.js is used in this application And for run this app, `NPM`  needs to install. `Manager` ccan select his team members like `Engineers` and `Interns` for his team and needs to provide team members detailes answering the prompt questions. After providing the detailes if choose exite  its autoate generate a html page all the choosen members.
+Generate Team is a dynamically  generates ` Team build `   application. Node.js is used in this application And for run this app, ` NPM `  needs to install. ` Manager `  select his team members like ` Engineers ` and ` Interns ` for his team and needs to provide team members detailes answering the prompt questions. After providing the detailes if choose exite  its autoate generate a html page all the choosen members.
 ____
    [View](https://rumardas.github.io/generate_team/)
 
