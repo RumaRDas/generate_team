@@ -67,7 +67,7 @@ function menu() {
     inquirer
         .prompt([...generalQuestions, managerQuestion])
         .then(function (data) {
-            const manager = new Manager(data.name, data.id, data.email, data.officeNumber, "Manager");
+            const manager = new Manager(data.name, data.id, data.email, data.officeNumber,data.role);
             employees.push(manager);
             createTeamMember();
         });
