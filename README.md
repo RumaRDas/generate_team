@@ -26,7 +26,7 @@ ___
 
 ## page view
 
-![Page view](./desktop_view.png)
+![Page view](./assets/page_view.png)
 
 ## Test Results
 
