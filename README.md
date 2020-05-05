@@ -22,7 +22,12 @@ ___
 
 ![Test Image 1](./assets/demo.gif) 
 
-[Demo](https://drive.google.com/file/d/1PqGyyB_0aFpz0nCpkar_aOfLTUyggktc/view/)
+[Demo Link](https://drive.google.com/file/d/1PqGyyB_0aFpz0nCpkar_aOfLTUyggktc/view/)
 
 ## page view
-![Test Image 1](./desktop_view.png)
+
+![Page view](./desktop_view.png)
+
+## Test Results
+
+![Test Result](./assets/test.png)
